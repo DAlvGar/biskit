@@ -88,18 +88,18 @@ def color_b(selection='all',item='b',mode='hist',gradient='bgr',nbins=11,sat=1.,
 
 # Sanity checking
   if nbins == 1:
-    print "\n     WARNING: You specified nbins=1, which doesn't make sense...resetting nbins=11\n"
+    print("\n     WARNING: You specified nbins=1, which doesn't make sense...resetting nbins=11\n")
     nbins=11
 
   if mode not in ('hist','ramp'):
-    print "\n     WARNING: Unknown mode ",mode, "    ----->   Nothing done.\n"
+    print("\n     WARNING: Unknown mode ",mode, "    ----->   Nothing done.\n")
     return
   elif gradient not in ('bgr','rgb','rainbow','reverserainbow','bwr','rwb',
                         'bmr','rmb','rw','wr','gw','wg','bw','wb','gy','yg','gray','grey','reversegray','reversegrey'):
-    print "\n     WARNING: Unknown gradient: ",gradient, "    ----->   Nothing done.\n"
+    print("\n     WARNING: Unknown gradient: ",gradient, "    ----->   Nothing done.\n")
     return
 
-  print "MODE, GRADIENT, NBINS:", mode,gradient, nbins
+  print("MODE, GRADIENT, NBINS:", mode,gradient, nbins)
 
 # get list of B-factors from selection
   m = cmd.get_model(selection)
@@ -107,7 +107,7 @@ def color_b(selection='all',item='b',mode='hist',gradient='bgr',nbins=11,sat=1.,
   b_list = []
 
   if len(m.atom) == 0:
-    print "Sorry, no atoms selected"
+    print("Sorry, no atoms selected")
 
   else:
     if item == 'b':
@@ -118,12 +118,12 @@ def color_b(selection='all',item='b',mode='hist',gradient='bgr',nbins=11,sat=1.,
         b_list.append(m.atom[i].q)
 
     else:
-      print "Not configured to work on item %s" % item
+      print("Not configured to work on item %s" % item)
       return
 
     max_b = max(b_list)
     min_b = min(b_list)
-    print "Minimum and Maximum B-values: ", min_b, max_b
+    print("Minimum and Maximum B-values: ", min_b, max_b)
 
     if mode == 'ramp':
       # color in bins of equal numbers of atoms
@@ -163,7 +163,7 @@ def color_b(selection='all',item='b',mode='hist',gradient='bgr',nbins=11,sat=1.,
 
 # do the colouring now
     for j in range(nbins):
-      print "Color select: ",sel[j]
+      print("Color select: ",sel[j])
       cmd.color(colours[j],sel[j])
 
 def color_q(selection="all",mode="hist",gradient="bgr",nbins=11,sat=1.,value=1.,minimum='',maximum=''):
