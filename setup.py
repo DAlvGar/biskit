@@ -19,7 +19,7 @@ import sys
 # an easy way to do this.
 packages, data_files = [], []
 
-root_dir = os.path.dirname(__file__)
+root_dir = os.path.relpath(os.path.dirname(__file__))
 len_root_dir = len(root_dir)
 
 biskit_dir = os.path.join(root_dir, 'biskit')
@@ -60,10 +60,6 @@ for dirpath, dirnames, filenames in os.walk( script_dir ):
 if len(sys.argv) > 1 and sys.argv[1] == 'bdist_wininst':
     for file_info in data_files:
         file_info[0] = '/PURELIB/%s' % file_info[0]
-
-# Small hack for working in linux installation python >3.8 and avoid
-# absolute paths error
-data_files = [os.path.relpath(path) for path in data_files]
 
 long_description = \
  """ Biskit is a modular, object-oriented Python library for structural
